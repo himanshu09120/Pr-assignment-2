@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "report_pages": 6,
+  "cv_results": 1800,
+  "oof_predictions": 13200,
+  "independently_checked_predictions": 120,
+  "checks": [
+    "accuracy tensor/CSV equality",
+    "recomputed summary metrics",
+    "confusion matrices from predictions",
+    "independent kNN fold",
+    "PDF page count, metric values, and resolved references"
+  ]
+}

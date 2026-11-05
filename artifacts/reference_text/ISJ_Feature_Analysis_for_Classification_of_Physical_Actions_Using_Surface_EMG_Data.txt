@@ -1,0 +1,800 @@
+--- PAGE 1 ---
+12196 IEEE SENSORS JOURNAL, VOL. 19, NO. 24, DECEMBER 15, 2019
+Feature Analysis for Classiﬁcation of Physical
+Actions Using Surface EMG Data
+Anish C. Turlapaty , Member , IEEE, and Balakrishna Gokaraju, Member , IEEE
+Abstract— Based on recent health statistics, there are several
+thousand people with limb disability and gait disorders that
+require medical assistance. A robot assisted rehabilitation ther-
+apy can help them recover and return to a normal life. In this
+scenario, a successful methodology is to use an EMG signal based
+information to control the support robotics. For this mechanism
+to function properly, the EMG signal from the muscles has to be
+sensed and then the biological motor intention has to be decoded
+and ﬁnally the resulting information has to be communicated
+to the controller of the robot. An accurate understanding of the
+motor intention requires a pattern recognition based framework.
+Hence in this paper, we propose an improved classiﬁcation
+framework through identiﬁcation of the relevant features that
+drive the pattern recognition algorithm. Major contributions
+include a set of modiﬁed spectral moment based features and
+another relevant inter-channel correlation feature that contribute
+to an improved classiﬁcation performance. Next, we conducted
+a sensitivity analysis of the classiﬁcation algorithm to different
+EMG channels. Finally, the classiﬁer accuracy with probabilistic
+neural networks based classiﬁer is 92 .7% and with an ensemble
+of subspace K-nearest neighbors algorithm it is 93 .9% and is
+better than that of the other state of the art algorithms.
+Index Terms— PNN, feature combinations, classiﬁcation, EMG,
+spectral moments.
+I. I NTRODUCTION
+A. Background
+Physical disabilities have been a major problem in the
+modern world due to various reasons. For example, the aging
+brings problems such as gait disorders and limb impairments
+leading to a loss of quality of life [1]. Next occupational,
+trauma, and sports-based injuries and other kinds of severe
+accidents usually make people either completely or partially
+disabled. Another major cause of the disabilities in adults is
+a stroke to the motor cortex or other related regions. For
+example, an ischemic stroke can lead to motor disabilities,
+most commonly to the upper limbs [2]. In terms of the
+statistics, there are 300 amputees per year in the United King-
+dom [3] and a total of 185 , 000 amputees live in the United
+States [4]. Most of them need a prosthetic limb or partial
+limb support. Only a few treatment options are available for
+Manuscript received May 23, 2019; revised August 14, 2019; accepted
+August 17, 2019. Date of publication August 28, 2019; date of current version
+November 26, 2019. This work was supported in part by the U.S. Department
+of Education-Minority Science and E ngineering Program’s (MSEIP) Capac-
+ity Competitiveness Enhancement Model (CCEM), 2018-2019 under Grant
+P120A160122. The associate editor coordina ting the review of this article and
+approving it for publication was Prof. Aime Lay-Ekuakille. (Corresponding
+author: Anish C. Turlapaty.)
+A. C. Turlapaty is with the Indian Institute of Information Technology Sri
+City, Sri City 517646, India (e-mail: anish.turlapaty@gmail.com).
+B. Gokaraju is with the Visualization and Computing Advanced Research
+Center, North Carolina A&T State University, Greensboro, NC 27411 USA.
+Digital Object Identiﬁer 10.1109/JSEN.2019.2937979
+these individuals. For instance, a therapeutic rehabilitation can
+assist the partially disabled people for functional recovery
+in order to resume normal activities and thus improve the
+quality of life. In this context, wearable robots can assist
+in improving the effectiveness of rehabilitation [5]. There is
+growing evidence that a robot-assisted therapy provides an
+improvement of motor skills [6], [7]. The key reason for this
+improvement is due to the increased therapeutic repetitions and
+enhanced motivation for the patient due to the involvement of
+the virtual reality and video ga ming [8]. The wearable robotics
+can also be used to ease the burden on human beings in various
+manual tasks. For example, the disabled can be supported by
+an externally powered prosthetic or an orthotic exoskeleton to
+restore the limb functionality to some extent [9], [10].
+In most of these exoskeleton applications, a key goal is
+to build a human robot interface that can learn the intention
+of a user and adapt itself in o rder to provide accurate and
+timely assistance [11]. Note that in a healthy human, there is
+active communication between the central nervous system via
+motor neurons with the concerned muscle groups to produce
+the intended motion [12]. However, in an amputee or in a
+person with a stroke-induced disability, the bioelectrical signal
+may not reach the muscles or the muscles may not produce the
+required force. In these scenarios, an engineering solution is to
+sense the required myoelectric signal, assuming the signal has
+a causal relation to the intended motion, using an EMG sensor
+on the muscle surface and extract the relevant information.
+For example, one can estimate the joint force and decode the
+intended direction needed for the movement and relay it to
+the controller to generate the intended motion [13], [14]. The
+EMG signal basically refers to the electrical activity associated
+with the muscles when the muscle ﬁbers are recruited via
+neuronal ﬁrings [15]. A practical exoskeleton product based
+on surface EMG, invented by an MIT based startup, Myomo,
+assists people with partial disabilities to perform their daily
+activities [16]. In this type of research, a major challenge is
+the design of suitable algorithms and the hardware to cope
+up with the complexity of human systems and further adapt
+in an uncertain environment [ 17]. In recent years, there is
+growing evidence that the pattern recognition (PR) algorithms
+can be used to learn the motor intention from the surface EMG
+signals [18]. In the next subsection, we present a survey of the
+most recent algorithms for PR based control of exoskeletons.
+B. Literature Review
+This technology usually has (1) a software component
+in which an algorithm does relevant feature extraction and
+1558-1748 © 2019 I EEE. Personal u se is perm itted, but republication/redistri bution requires IEEE permission.
+See http://www.ieee.org/publications_standards/publications/rights/index.html for more information.
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 2 ---
+TURLAPA TY AND GOKARAJU: FEA TURE ANAL YSIS FOR CLASSIFICA TION OF PHYSICAL ACTIONS 12197
+selection and categorization of movements using a statistical
+discriminator and (2) a hardware component to interface with
+an exoskeleton via a controller. In the literature, as discussed
+below, we ﬁnd a great deal of emphasis on the algorithm
+part speciﬁcally on the feature extraction. In [12], an online
+method was developed that has a PR stage and a control
+mechanism. The classiﬁca tion was performed for 8 hand
+gestures using the RMS value as a feature and a linear SVM
+achieving 95% accuracy. Next, an orthotic arm guided by
+an EMG based control with up to four degrees of freedom
+was demonstrated for performing basic manoeuvres in a 3D
+environment such as simple arm movements and object pick
+and place. In [19], an ANN-based control was developed
+that has a sensitivity to the multiple levels of movements
+of ﬂexors and extensors to directly control the orthotic arm.
+In [14], a PR algorithm was developed to determine the torque
+level from a human wrist and use it for real time control
+of an exoskeleton prototype. It was shown that a set of four
+EMG channels is sufﬁcient for the classiﬁcation of different
+wrist actions at different torque levels. In [3], a classiﬁcation
+experiment was done, in which three healthy subjects and
+three amputees participated. T he healthy subjects were asked
+to perform 15 different ﬁnger movements and the amputees
+were asked to imagine 12 different movements. Using the
+frequency domain features and the SVM, the movements
+were classiﬁed with an accuracy greater than 90%. In [20],
+the intrinsic mode functions were used for feature extraction
+toward the classiﬁcation of six categories of the handgrips.
+In another work, the cardinality of the EMG signal was
+proposed as a highly relevant feature for identifying the motor
+intent [21]. Next, in [4], a classiﬁcation of six handgrips and
+ﬁnger positions was analysed against the force levels. Nine
+amputees participated in the study and the key innovation is
+the introduction of the moment ratios as discriminative features
+for a successful classiﬁcation with accuracy over 90% despite
+discrete variations in the force levels. Next, in [22] an analysis
+was performed of the relevant features and the selection of
+corresponding classiﬁers for control of the exoskeletons for
+partially disabled hands. They addressed the classiﬁcation of
+EMG signals corresponding to four hand positions for 20
+subjects of which 16 are non-amputees and 4 are partial hand
+amputees. The efﬁciency of the time domain features was
+compared with the autoregressive features and the frequency
+domain features. Next in [23], the local binary pattern based
+features were used for the classiﬁcation of the physical action
+EMG data [24]. A major drawback in [23], is that it is not
+clear whether the analysis is fo r a binary classiﬁcation i.e,
+the normal vs. the aggressive or for classiﬁcation of all the
+20 categories of the data. In the current paper, as described
+in the following sections, we address the above mentioned
+multi-category classiﬁcation problem.
+C. Contributions
+In our paper, we address the classiﬁcation of M-categories
+of physical actions based on multi-channel EMG data. We pro-
+pose an improved feature set consisting of selected fea-
+ture subsets from different feature modalities such as the
+time domain (TD) statistics, the inter-channel TD statistics,
+the spectral moment ratios and products, the spectral band
+powers and the local binary pattern based statistics. In the
+feature extraction apart from other well known features,
+we have modiﬁed the spectral moment features to improve
+the classiﬁcation performance. Moreover we have identiﬁed
+an inter-channel correlation feature that also contributes to
+an improved classiﬁcation. Next, we present the key EMG
+channels that signiﬁcantly cont ribute toward the performance
+improvement. Finally, we also demonstrate that an Ensemble
+of subspace KNN, a single KNN and a probabilistic neural
+network results in an accuracy ≥ 92.7% and an area under
+the ROC curve ≥ 0.974.
+II. M ETHODOLOGY
+We consider a dataset X with P(= S × C × R) observation
+arrays obtained from S subjects. These observations consist
+of C categories with R trials each ie., each of the S subjects
+has performed each activity R times as represented in ﬁg. 1.
+Finally, each of the p-th observation array X p has M channels
+(distinct EMG electrode contact locations) and each of the m-
+th channel xmp has N values (samples).
+X =
+{
+X1, X2,··· , X P
+}
+X p =
+[
+x1p, x2p,··· , xMp
+]
+, p = 1,··· , P
+xmp =
+[
+xmp (1), xmp (2),··· , xmp (N)
+]T
+, m = 1,··· , M (1)
+The ﬁrst step is segmentation of the EMG signal in
+each channel with a non-overlapping and a sliding window
+length L, which is derived based on the sampling rate of
+the concerned EMG data. The standard window length (in
+time) is 200ms from literature, s ee [14] and [3]. Next, the l-th
+element of the w-th segment of the m-th channel of the p-th
+observation is denoted as
+sj(l) = xj((w − 1) ∗ L + l) (2)
+here, j represents the index triplet j = (m,w, p),w h e r ew =
+1,··· , Nw , l = 1,··· , L and Nw = N
+L . Note that each pattern
+can consist of Ns segments and features from each segment are
+combined to build the complete feature vector corresponding
+to a pattern.
+Now we give an overview of the proposed pattern recogni-
+tion framework as given in ﬁg. 2. The EMG signals are seg-
+mented and the features from various modalities are extracted
+as described in the subsequent sections. The combined feature
+set is given as an input to a probabilistic neural network for
+the classiﬁcation. Next the relev ant features are selected using
+a forward feature selection a lgorithm. The performance is
+analyzed using a 10-fold cross validation. Finally, the classiﬁ-
+cation performance is compared w ith those of several different
+classiﬁers. Next, we give the details of the feature extraction
+algorithms.
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 3 ---
+12198 IEEE SENSORS JOURNAL, VOL. 19, NO. 24, DECEMBER 15, 2019
+Fig. 1. Physical action data: setup for classiﬁcation.
+Fig. 2. Physical action data classiﬁcation scheme using PNN.
+A. Feature Extraction
+1) Time Domain Statistics (TDS): The ﬁrst subset of fea-
+tures is computed from the sample statistics for each segment
+within a pattern [25]. The mean value for the j-th segment
+(see eq. (2)) is deﬁned as
+ft(j) = 1
+Nw
+Nw∑
+l=1
+sj(l) (3)
+Similarly, the variance, skewne ss and kurtosis are computed.
+Finally, for a p-th pattern, the 4 features from each segment
+and M channels are grouped into the TDS feature vector
+fTD S ( p).
+2) Inter-Channel Statistics (ICS): This subset of features is
+based on maximum cross-correlation [26] among the corre-
+sponding w-th segments of the two channels i and j of the
+p-th signal and is deﬁned as
+ρi, jw, p = max
+(
+E
+{
+si,w, p(l)s j,w, p(l)
+})
+(4)
+Note that the cross-correlation function need not have a
+maxima at the zero-lag. Here the values of i and j are chosen
+from the set C1 of
+(M
+2
+)
+ordered pairs deﬁned below.
+C1 ={(i, j) : i = 1, 2,··· , M − 1; j = 2, 3,··· , M and i = j}
+(5)
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 4 ---
+TURLAPA TY AND GOKARAJU: FEA TURE ANAL YSIS FOR CLASSIFICA TION OF PHYSICAL ACTIONS 12199
+The feature vector corresponding to the M channels is
+fICS ( p) ={ ρi, jw, p; (i, j) ∈ C1} (6)
+3) Log Moments of F ourier Spectra (LMF): The logarithms
+of moments and their ratios from the frequency domain are
+computed for the EMG segments based on [3]. Consider the
+L-point Fourier transform of a segment in the m-th channel of
+the p-th EMG signal
+Sj(k) =
+L∑
+l=1
+sj(l) exp
+(
+− j 2πlk
+L
+)
+, k = 1,··· , L (7)
+Now the squared magnitude spectrum is deﬁned as
+ψj(k) =| Sj(k)|2 (8)
+The i -th frequency domain moment from the spectrum is
+deﬁned as [4]
+gj(i) =
+/radicaltp/radicalvertex/radicalvertex√
+ L∑
+k=1
+kiψj(k) (9)
+where i ∈{ 0,··· , 6}. Now, the moment features are deﬁned as
+fj(1) = ln gj(0)
+fj(2) = ln gj(2)
+fj(3) = ln gj(4)
+fj(4) = ln gj(0) − 1
+2 ln
+(
+gj(0) − gj(2)
+)
+− 1
+2 ln(gj
+(
+0) − gj(4)
+)
+fj(5) = ln gj(2) − 1
+2 ln
+(
+gj(0)gj(4)
+)
+fj(6) = ln gj(0) − 1
+4 ln
+(
+gj(1)gj(3)
+)
+fj(7) = ln gj(0) − 1
+4 ln
+(
+gj(2)gj(6)
+)
+(10)
+The pair wise features based on moment products are
+fj(n) = 1
+2 ln gj(i)gj( j) with n = 8,··· , 17 (11)
+where the values of i and j are chosen from the set C2 of 10
+ordered pairs deﬁned below.
+C2 ={ (i, j) : i = 1, 2, 3, 4; j = 2, 3, 4, 5a n d i = j} (12)
+Note that the features fj(n) for n = 6,··· , 17 are newly
+proposed. For the M channels, the features deﬁned in
+eqs. 10 and 11 are grouped into the feature vector fLMF ( p).
+4) Spectral Band Powers (SBP) : The spectral features were
+previously proposed for the EMG pattern recognition in [27].
+In this work, the spectral band power features are extracted
+as follows. For each channel of the p-th pattern, assuming a
+model order ν, the auto-regression model coefﬁcients {ai} are
+computed using the Burg’s method described in [28].
+H(ωk) = 1
+A(ωk) (13)
+here A(ω) is derived from the z-transform A(z) = ∑νi=0 ai zi .
+Next the power spectral density estimate is given by
+(ωk) =| H(ωk)|2σ 2burg (14)
+here σ 2burg is the error variance computed in the Burg’s
+method. Finally the SBP features are evaluated by dividing the
+spectrum into Nb bands and computing the respective powers
+in those bands. For the bth band, the spectral index is deﬁned
+as k : Kb−1 + 1,··· , Kb where Kb is the length the bth band.
+The power within the band is
+ηmb = ∑
+k∈bth band
+(ωk), b = 1,··· , Nb (15)
+and the feature vector fSBP ( p) is composed of these band
+powers for all b and m.
+5) Local Binary Patterns: For the w-th segment of the m-th
+channel in the p-th pattern, the local binary patterns (LBP) can
+be computed as follows
+slbp (i) =
+∑
+j
+
+b(i)
+j (16)
+here, 
+ j are the elements of the basis vector used in computing
+the LBPs for the i -th interval. Next the exponents b(i) are
+given by
+bi = u({gi − gc}) (17)
+here u(·) is the step function and gi are the values of the
+signal over a sliding window of length NLBP and gc is the
+mean of a subset of the same vector, for details refer to [29].
+Finally, the features are computed by counting the number of
+LBP values above and below a certain threshold τlbp .
+f mlbp (1) = #{slbp ≤ τlbp }
+f mlbp (2) = #{slbp >τ lbp } (18)
+here # {A} represents the cardinality of a set A. Finally,
+the feature vector fLBP ( p) is composed of these LBP features
+for all M channels.
+B. Learning Using Classiﬁers
+In this work, we implemented the classiﬁcation using
+several existing classiﬁers with a focus on the probabilistic
+neural networks. The application of PNN for EMG signal
+classiﬁcation is discussed in [30]. The learning methodology
+for the multi-class problem using the PNN is based on learning
+the multi-modal multi-variate PDF of the data using the
+Parzen’s method. Ideally, each category has a corresponding
+mode in the multi-modal pdf. For the test data, the posterior
+probabilities that a pattern belongs to each of these modes are
+computed. Next, based on the maximum among these posterior
+probabilities, th e corresponding class is assigned to the test
+pattern. The key feature of the PNNs is that there is a separate
+neuron for each training pattern and hence the size of the
+network depends on the size of the training data [31].
+The other classiﬁers used for bench-marking the per-
+formance are (1) a single K-Nearest Neighbor classiﬁer
+(fKNN) [32], (2) an ensemble of subspace KNNs (sKNN) [32],
+(3) a SVM with a cubic polynomial kernel (cSVM) [33],
+(4)a SVM with a Gaussian Kernel (gSVM) [33], (5) the
+Bagged Trees (BTR) [34] and (6) the Linear Discriminant
+Analysis (LDA) [35]. The performance of the classiﬁers is
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 5 ---
+12200 IEEE SENSORS JOURNAL, VOL. 19, NO. 24, DECEMBER 15, 2019
+TABLE I
+PHYSICAL ACTION CA TEGORIES AND CLASS LABELS
+TABLE II
+CARDINALITIES OF EACH FEA TURE SUBSET THROUGH
+COMBINA TION OF THE 8C HANNELS
+evaluated using the classiﬁcation accuracy ( α), Kappa coefﬁ-
+cient (κ), F1 measure and multi-class area under ROC curve
+(γ ) [36].
+III. I MPLEMENTA TION AND RESULTS
+A. Physical Action Dataset
+The data set of interest is taken from the UCI Machine
+learning repository [24]. The dataset consists of the EMG
+signals recorded using the Delsys EMG electrodes on S = 4
+subjects while they performed C = 20 different physical
+activities of which 10 were aggressive and 10 were normal
+activities as listed in table I. Each subject repeats the physical
+action R = 15 times. There were 8 EMG electrodes placed on
+each subject, ﬁrst 4 on the bicep s and triceps muscle groups of
+the upper limbs and next 4 on the thighs and hamstring muscle
+groups of the lower limbs. Finally, each channel consists of
+approximately 10 , 000 values. Hence, in this study the total
+sample size becomes P = 4 × 20 × 15 = 1200.
+B. Application of Classiﬁcation
+The features from M = 8 channels for each modality are
+computed as follows. Based on R = 15 and total signal length
+10000, the EMG signal length per trial is N = 666. The
+number of segments is Ns = 1, and the width Nw = N,
+Next, the feature subsets from the different feature extraction
+modalities mentioned in section (II-A) are computed and
+combined into a full feature vector.
+fall ( p) = [fTD S ( p), fICS ( p), fLMF ( p), fSBP ( p), fLBP ( p)]
+(19)
+As presented in the table II, the cardinality of each subset
+(except ICS) is 8 × cmod ,w h e r ecmod is the cardinality of the
+feature subset per modality per channel. For example, for time
+domain features, the cardinality is 8 × 4 = 32.
+Now, based on the pairs given in table III, the cross-
+correlation features (6 each) are computed separately for the
+subset of the channels from the upper limbs and those from
+the lower limbs. The LMF cardinality is based on the fact that
+TABLE III
+CHANNEL PAIRS CONSIDERED FOR COMPUTING THE
+CROSS -C ORRELA TION FEA TURES
+TABLE IV
+SELECTED FEA TURES (I NDEX )F ROM EACH MODALITY TAKEN FROM
+THE 8C HANNELS THA T HAV E SIGNIFICANT CONTRIBUTION TO THE
+CLASSIFICA TION PERFORMANCE
+each channel has 17 LMF features amounting to a total of 136
+features. For the spectral band powers, the number of bands
+is chosen to be Nb = 10 leading to a total of 80. Finally,
+the 2 LBP features are computed per channel counting to a
+total of 16.
+C. Analysis
+Initially, the generated feature vector consisting of 276
+features is used as an input to the PNN classiﬁer. In the cross-
+validation strategy, the sequence of the feature vectors and
+the output labels is shufﬂed to avoid any learning bias in the
+classiﬁcation. Next, the algor ithm performance is evaluated
+by averaging the 10 fold cross-va lidation based classiﬁcation
+metrics across Mc = 100 Monte-Carlo runs. The average
+classiﬁcation performance wh en all the feature subsets are
+used is α = 93% and κ = 0.925.
+1) Sequential F orward Feature Selection: Now we apply
+the forward feature selection process to the feature set fall as
+follows. The process begins by selecting a feature that has
+the best accuracy among the individual features. This feature
+is placed in fsel , the selected feature subset. In the next step,
+a second feature that improves the performance is selected
+and added to the same subset fsel and this process is repeated
+until the classiﬁcation perform ance converges to the global
+maximum. The list of selected features is presented below.
+The feature index in table IV is based on the cardinality of
+the subsets given in table II.
+Among the time domain statistics, the mean value of the
+EMG signal is the key feature selected from the channels
+1, 3, 5, 7, 8. Next the variance statistic from the channel 3 is
+selected. Followed by the skewness from the channels 2 , 3
+and 6. Finally the kurtosis is not selected and hence irrelevant
+for improving the classiﬁcation accuracy.
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 6 ---
+TURLAPA TY AND GOKARAJU: FEA TURE ANAL YSIS FOR CLASSIFICA TION OF PHYSICAL ACTIONS 12201
+TABLE V
+CHANNEL PAIRS THA T HAV E SIGNIFICANT CROSS -C ORRELA TION AND
+CONTRIBUTE TO PHYSICAL ACTION CLASSIFICA TION
+TABLE VI
+SETUP INFORMA TION FOR EACH OF THE CLASSIFIERS
+USED IN BENCH -M ARKING
+Next, in terms of the inter channel statistics, the correlation
+between the EMG signals of the channels (1, 2) (i.e., the right
+biceps and triceps) and (2, 3) (i.e., the right triceps and left
+biceps), and again the correlation between the channels (5, 6)
+(i.e., the right thigh and hamstring) have been found to be
+contributing to the classiﬁcation (see table V). Next, among
+the FFT based moment ratios/products (LMF), the relevant
+features in each channel are speciﬁed in the table IV. Clearly
+the moment ratio deﬁned as fj(7) given in eq. 10 is the
+most relevant feature among the LMF features. Next in the
+channels 1 , 2 the moment ratios deﬁned in eq. 11 are found
+to be of relevance. Next the moment product features fj(10)
+in the eq. 11 from the channel 5 and fj(5) from the channel 7
+also contribute to the classiﬁcation. Finally, among the LMF
+features, those from the channels 4 and 6 are found to be
+irrelevant. From the SBP feature selection we note that only
+the average powers from the bands 2 , 3, 4 and 7 as mentioned
+in table IV are found to be relevant. Finally, in the case of the
+LBP features, the features flbp (1) from the channels 3 , 5a n d
+7 are contributing to the classiﬁcation.
+2) Channel Relevance Analysis: The relevance of the
+channels toward classiﬁcation is measured in terms of α and κ.
+In this approach, we perform the classiﬁcation of the EMG
+data, omitting one channel at a time from the selected features
+as given in table IV, to compute the α and κ.F r o mMc = 100
+runs of each of the 8 cases, we obtain the average classiﬁer
+performance in a 10 −fold cross validation framework and
+present it in ﬁg. 3. From this ﬁgure, it is clear that the
+channels 1 , 2 and 3 i.e., the features of the EMG data from
+the electrodes placed on the ri ght biceps, right triceps and left
+biceps have the most relevance. Next features corresponding
+to the channels 7 i.e., left thigh can be ranked second. Finally,
+the channels 4 , 5, 6 and 8 (left triceps, right thigh, right
+hamstring and left hamstring) fall third in terms of relevance
+toward classiﬁcation.
+3) Comparison Across Classiﬁers: The performance of the
+PNN classiﬁer is compared to that of each of the classiﬁers
+Fig. 3. Sensitivity of classiﬁcation performance to EMG channels.
+Fig. 4. The performance improvement in κ due to inclusion of the proposed
+and selected features.
+TABLE VII
+CLASSIFICA TION PERFORMANCE COMPARISON AMONG MUL TIPLE
+CLASSIFIERS WITH THE SELECTED SUBSET OF FEA TURES
+mentioned in section II-B. For each of these classiﬁers the
+setup including a choice of hyper-parameters is mentioned
+in the table VI. For bench-marking the performance of the
+classiﬁers, we have compared the classiﬁcation metrics across
+seven different classiﬁers as shown in table VII. Moreover,
+the same set of selected features from the SFS algorithm
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 7 ---
+12202 IEEE SENSORS JOURNAL, VOL. 19, NO. 24, DECEMBER 15, 2019
+TABLE VIII
+CONFUSION MAT R I XFROM PNN W ITH 10-F OLD CROSS VALIDA TION
+TABLE IX
+CONFUSION MAT R I XFROM ENSEMBLE OF SUBSPACE KNN S WITH 10-F OLD CROSS VALIDA TION
+based on the PNN based approach are used in each of the
+other classiﬁers. Next we present an summary of different
+performance metrics
+• accuracy α and Kappa coefﬁcient κ: The sKNN classiﬁer
+has the highest α = 93.9% and κ = 0.936 followed
+by fKNN and PNN classiﬁers with α ≥ 92.7% and
+κ = 0.924. Performance of both the SVM algorithms is
+slightly lower by 2%. Finally, the LDA algorithm resulted
+in the lowest performance with α = 71% and κ = 0.695.
+• F1-measure: Again, the sKNN resulted in a maximum
+F1 measure of 0 .939 with fKNN and PNN resulting in
+0.924 (lower by 1%), followed by the SVM and again
+the LDA has the lowest F1 measure of 0 .717.
+• Area under ROC curve γ : In terms of γ , PNN and sKNN
+have similar performance γ = 0.975, followed by fKNN
+and the SVM algorithms and again the LDA has the
+lowest area γ = 0.915.
+4) Comparisons Across Classes: The across class perfor-
+mance for PNN is given in the confusion matrix (CM) in
+table VIII. Recall that the physical actions have two broad
+categories, the normal and the aggressive. From the confusion
+matrix in table VIII, the ﬁrst quadrant of the matrix has a
+signiﬁcantly stronger diagonal compared to the fourth quadrant
+which suggests that the PNN classiﬁer is highly successful
+in learning the normal actions compared to the aggressive
+actions. The second and the third quadrants of the CM are
+nearly all blank (i.e. zeros) suggesting that there is very little
+confusion between the normal and the aggressive activities.
+In the fourth quadrant, the section of the confusion matrix
+corresponding to the aggressive activities, shows that there
+is slightly more number of miss-classiﬁcations. For example,
+16 patterns from the class 19 get classiﬁed as the class 12
+which means there is a consider able confusion between the
+front kicking and the side kicking actions. Next, the confusion
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 8 ---
+TURLAPA TY AND GOKARAJU: FEA TURE ANAL YSIS FOR CLASSIFICA TION OF PHYSICAL ACTIONS 12203
+matrix resulting from the implementation of the classiﬁca-
+tion using an ensemble of subspace KNN is presented in
+table IX. A similar analysis also applies to this and other
+classiﬁers. For example, as shown in the table IX, there is
+a confusion between the front kicking and the side kicking
+activities.
+5) Feature Contributions: The selected features included a
+few features from each subset along with the newly proposed
+spectral moment ratio and products and the inter channel
+correlation features. In the ﬁg. 4, the term Baseline refers to the
+subset of 21 selected features that are previously used in exist-
+ing literature. Next, ICS refers to the selected inter-channel
+correlation features (see table V) and LMF refers to the
+proposed spectral moment ratios and products (see tables IV).
+As shown in ﬁg 4a, for the PNN classiﬁer, the inclusion of
+the ICS features improves the Kappa performance by 4 .2%,
+the LMF by 11 .8% and the union of the proposed subsets
+is 14 .59%. Similarly for the sKNN classiﬁer (see ﬁg 4b),
+the improvements due to the ICS, LMF and the union of the
+subsets are 2 .2%, 6.1% and 7 .4% respectively.
+IV . C ONCLUSION
+In this study, we have implemented a multi-category classiﬁ-
+cation framework based on the probabilistic neural networks to
+categorize the physical actions using the features derived from
+eight channels of the surface EMG data. A set of 276 features
+were extracted from various modalities including the statistical
+features in time domain, the int er channel cross correlation
+features, logarithms of moment ratios of the Fourier spectra,
+the mean band powers of power spectral density estimates
+based on the Burg algorithm, and the features based on the
+local binary patterns.
+Using the sequential forward selection algorithm a subset
+of 37 features from above 276 features were found to be
+relevant for the physical action classiﬁcation. The selected
+features included a few features from each subset and also
+a set of the modiﬁed spectral moment products/ratios and
+the inter channel correlation features. Based on the selected
+features, the average classiﬁca tion performance metrics for the
+sKNN, PNN and fKNN are similar. Next the classiﬁcation
+performance is slightly redu ced for kernel based SVMs and
+further degrades for the Bagged Trees and the LDA algorithm.
+In terms of channel relevance, the EMG data from the upper
+limbs has greater signiﬁcance in physical action classiﬁcation.
+The future plans for this research have two important direc-
+tions. The ﬁrst is to explore the deep learning methods to
+improve the classiﬁcation accura cy. A second direction is to
+conduct actual experiments to acquire the EMG measurements
+for controlling an orthotic exoskeleton for an upper limb.
+Finally, the overall goal is to ﬁnd an optimal combination
+of learning algorithms and control strategies for upper limb
+exoskeletons.
+REFERENCES
+[1] H. Stolze et al., “Prevalence of gait disorders in hospitalized neurological
+patients,” Movement Disorders, vol. 20, no. 1, pp. 89–94, 2005.
+[2] T. Proietti, V . Crocher, A. Roby-Brami, and N. Jarrassé, “Upper-
+limb robotic exoskeletons for neurorehabilitation: A review on
+control strategies,” IEEE Rev. Biomed. Eng. , vol. 9, pp. 4–14,
+2016.
+[3] A. H. Al-Timemy, G. Bugmann, J. Escudero, and N. Outram, “Classiﬁ-
+cation of ﬁnger movements for the dexterous hand prosthesis control
+with surface electromyography,” IEEE J. Biomed. Health Informat. ,
+vol. 17, no. 3, pp. 608–618, May 2013.
+[4] A. Al-Timemy, R. Khushaba, G. Bugmann, and J. Escudero, “Improving
+the performance against force variation of EMG controlled multifunc-
+tional upper-limb prostheses for transradial amputees,” IEEE Trans.
+Neural Syst. Rehabil. Eng. , vol. 24, no. 6, pp. 650–661, Jun. 2016.
+[ 5 ]A .C .L o et al. , “Robot-assisted therapy for long-term upper-limb
+impairment after stroke,” New. England. J. Med. , vol. 362, no. 19,
+pp. 1772–1783, May 2010.
+[6] N. Jarrassé et al., “Robotic exoskeletons: A perspective for the rehabili-
+tation of arm coordination in stroke patients,” Frontiers Hum. Neurosci.,
+vol. 8, p. 947, Dec. 2014.
+[7] V . Grosu, C. R. Guerrero, B. Br ackx, S. Grosu, B. V anderborght, and
+D. Lefeber, “Instrumenting complex exoskeletons for improved human-
+robot interaction,” IEEE Instrum. Meas. Mag. , vol. 18, no. 5, pp. 5–10,
+Oct. 2015.
+[8] P . S. Lum, C. G. Burgar, P . C. Shor, M. Majmundar, and
+M. V an der Loos, “Robot-assisted movement training compared with
+conventional therapy techniques for the rehabilitation of upper-limb
+motor function after stroke,” Arch. Phys. Med. Rehabil. , vol. 83, no. 7,
+pp. 952–959, Jul. 2002.
+[9] S. Benatti, B. Milosevic, E. Farella, E. Gruppioni, and L. Benini,
+“A prosthetic hand body area cont roller based on efﬁcient pattern
+recognition control strategies,” Sensors, vol. 17, no. 4, p. 869, 2017.
+[10] H. Kazerooni, A. Chu, and R. Steger, “That which does not stabilize,
+will only make us stronger,” Int. J. Robot. Res. , vol. 26, no. 1, pp. 75–89,
+2007.
+[11] J. Rosen, M. Brand, M. B. Fuchs, and M. Arcan, “A myosignal-based
+powered exoskeleton system,” IEEE Trans. Syst., Man, Cybern. A, Syst.
+Humans, vol. 31, no. 3, pp. 210–222, May 2001.
+[12] P . Shenoy, K. J. Miller, B. Crawford, and R. P . N. Rao, “Online
+electromyographic control of a robotic prosthesis,” IEEE Trans. Biomed.
+Eng., vol. 55, no. 3, pp. 1128–1135, Mar. 2008.
+[13] T. Lenzi, S. M. M. D. Rossi, N. Vitiello, and M. C. Carrozza, “Intention-
+based EMG control for po wered exoskeletons,” IEEE Trans. Biomed.
+Eng., vol. 59, no. 8, pp. 2180–2190, Aug. 2012.
+[14] Z. O. Khokhar, Z. G. Xiao, and C. Menon, “Surface EMG pattern
+recognition for real-time control of a wrist exoskeleton,” Biomed. Eng.
+Online, vol. 9, no. 1, p. 41, 2010.
+[15] C. J. De Luca, “Physiology and mathematics of myoelectric sig-
+nals,” IEEE Trans. Biomed. Eng. , vol. BME-26, no. 6, pp. 313–325,
+Jun. 1979.
+[16] L. M. V . Benitez, M. Tabie, N. Will, S. Schmidt, M. Jordan, and
+E. A. Kirchner, “Exoskeleton technol ogy in rehabilitation: Towards an
+EMG-based orthosis system for upper limb neuromotor rehabilitation,”
+J. Robot. , vol. 2013, p. 13, Oct. 2013.
+[17] E. Scheme and K. Englehart, “Electromyogram pattern recognition for
+control of powered upper-limb prosthe ses: State of the art and challenges
+for clinical use,” J. Rehabil. Res. Develop. , vol. 48, no. 6, pp. 643–660,
+2011.
+[18] M. Khezri and M. Jahed, “Real-time intelligent pattern recognition
+algorithm for surface EMG signals,” Biomed. Eng. Online , vol. 6, no. 1,
+p. 45, 2007.
+[19] T. Tsuji, K. Shima, N. Bu, and O. Fukuda, “Biomimetic impedance
+control of an EMG-based robotic hand,” in Robot Manipulators Trends
+and Development. Rijeka, Croatia: InTechOpen, 2010, ch. 9.
+[20] C. Sapsanis, G. Georgoulas, and A. Tzes, “EMG based classiﬁcation of
+basic hand movements based on time-frequency features,” in Proc. 21st
+Medit. Conf. Control Automat. (MED) , Jun. 2013, pp. 716–722.
+[21] M. Ortiz-Catalan, “Cardinality as a highly descriptive feature in myo-
+electric pattern recognition for decoding motor volition,” Frontiers
+Neurosci., vol. 9, p. 416, Oct. 2015.
+[22] A. A. Adewuyi, L. J. Hargrove, and T. A. Kuiken, “Evaluating EMG
+feature and classiﬁer selection for application to partial-hand prosthesis
+control,” Frontiers Neurorobot., vol. 10, p. 15, Oct. 2016.
+[23] Ö. F. Ertu˘ grul, Y . Kaya, and R. Tekin, “A novel approach for SEMG
+signal classiﬁcation with adaptive local binary patterns,” Med. Biol. Eng.
+Comput., vol. 54, no. 7, pp. 1137–1146, 2015.
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 
+
+--- PAGE 9 ---
+12204 IEEE SENSORS JOURNAL, VOL. 19, NO. 24, DECEMBER 15, 2019
+[24] M. Lichman. (2013). UCI Machine Learning Repository . [Online].
+Available: http://archive.ics.uci.edu/ml
+[25] B. Hudgins, P . Parker, and R. N. Scott, “A new strategy for multifunc-
+tion myoelectric control,” IEEE Trans. Biomed. Eng. , vol. 40, no. 1,
+pp. 82–94, Jan. 1993.
+[26] L. H. Smith and L. J. Hargrove, “Comparison of surface and intra-
+muscular EMG pattern recognition for simultaneous wrist/hand motion
+classiﬁcation,” in Proc. 35th Annu. Int. Conf. IEEE Eng. Med. Biol. Soc.
+(EMBC), Jul. 2013, pp. 4223–4226.
+[27] R. N. Khushaba, M. Takruri, J. V . Miro, and S. Kodagoda, “Towards
+limb position invariant myoelectric pattern recognition using time-
+dependent spectral features,” Neural Netw. , vol. 55, pp. 42–58,
+Jul. 2014.
+[28] P . Stoica and R. Moses, Spectral Analysis of Signals .
+Upper Saddle River, NJ, USA: Pearson, 2005.
+[29] T. Mäenpää, The Local Binary Pattern Approach to Texture
+Analysis—Extensions and Applications . Oulu, Finland: Univ. of Oulu,
+2003.
+[30] N. Bu, M. Okamoto, and T. Tsuji, “A hybrid motion classiﬁcation
+approach for EMG-Based human–robot interfaces using Bayesian and
+neural networks,” IEEE Trans. Robot. , vol. 25, no. 3, pp. 502–511,
+Jun. 2009.
+[31] D. F. Specht, “Probabilistic neural networks,” Neural Netw., vol. 3, no. 1,
+pp. 109–118, 1990.
+[32] S. Sun, C. Zhang, and D. Zhang, “An experimental evaluation of
+ensemble methods for EEG signal classiﬁcation,” Pattern Recognit. Lett.,
+vol. 28, no. 15, pp. 2157–2163, 2007.
+[33] Y . Al-Assaf, “Surface myoelectri c signal analysis: Dynamic approaches
+for change detection and classiﬁcation,” IEEE Trans. Biomed. Eng. ,
+vol. 53, no. 11, pp. 2248–2256, Nov. 2006.
+[34] A. A. Abdullah, A. Subasi, and S. M. Qaisar, “Surface EMG signal
+classiﬁcation by using WPD and ensemble tree classiﬁers,” in Proc.
+CMBEBIH. Singapore: Springer, 2017, pp. 475–481.
+[35] A. J. Y oung, L. H. Smith, E. J. Rouse, and L. J. Hargrove, “Classiﬁ-
+cation of simultaneous movements using surface EMG pattern recog-
+nition,” IEEE Trans. Biomed. Eng. , vol. 60, no. 5, pp. 1250–1258,
+May 2013.
+[36] D. J. Hand and R. J. Till, “A simple generalisation of the area under the
+ROC curve for multiple class classiﬁcation problems,” Mach. Learn. ,
+vol. 45, no. 2, pp. 171–186, 2001.
+Anish C. Turlapaty received the B.Tech. degree in electronics and commu-
+nication engineering from Nagarjuna University, India, in 2002, the M.Sc.
+degree in radio astronomy and space sciences engineering from Chalmers
+University, Sweden, in 2006, and the Ph.D. degree in electrical engineering
+from Mississippi State University, Mississippi State, MS, USA, in 2010.
+From 2010 to 2012, he was with Mississippi State as a Postdoctoral
+Associate in pattern recognition and di gital signal processing-based methods
+for detection of sub-surface radioactive waste using electromagnetic induction
+spectroscopy. From 2012 to 2015, he was a Postdoctoral Associate in
+engineering and aviation sciences with the University of Maryland Eastern
+Shore working on statistical signal pro cessing for cognitive radar systems.
+From 2015 to 2017, he was a faculty member with the ECE Department,
+VR Siddhartha Engineering College , Vijayawada, India. Since 2017, he
+has been an Assistant Professor with the Indian Institute of Information
+Technology Sri City. He has published ten peer-reviewed journal articles and
+18 articles and posters at internationa l conferences and symposia. His current
+research interests include statistical signal processing and pattern recognition.
+He has received graduate student of the year awards for outstanding research
+from Mississippi State University Centers and Institutes and the Geosystems
+Research Institute, MSU, in 2010. He is also an active reviewer for many
+international journals re lated to signal processing.
+Balakrishna (Balu) Gokaraju received the B.S. degree in electronics and
+communication engineering from JNTU, Hyderabad, India, the M.S. degree
+in satellite remote sensing from BIT, Mesra, India, and the Ph.D. degree in
+computer engineering from Mississippi State University, USA.
+He recently visited NASA Goddard Space and Flight Center as an AI
+Research Faculty Member for seven months in 2019. He has extensive research
+background in satellite remote sensing applications and HPC, with 8 years of
+service in various national labs, incl uding High Performance Computing Col-
+laboratory (HPCC), the Center for Advan ced V ehicular Systems, the Geosys-
+tems Research Institute, MSU, and the Indian Space Research Organization
+(ISRO). He is an Associate Professor with the Department of Computational
+Science and Engineering and the Associate Director of Visualization and
+Computing Advanced Research Center (ViCAR), North Carolina A&T State
+University. His current research interests include spatio-temporal scientiﬁc
+visualizations, HPC, fully autonom ous ground rover maneuvering, and cyber
+security.
+Authorized licensed use limited to: Indian Institute of Information technology Sricity. Downloaded on October 28,2024 at 08:03:12 UTC from IEEE Xplore.  Restrictions apply. 

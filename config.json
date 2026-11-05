@@ -1,0 +1,12 @@
+{
+  "seed": 2026,
+  "n_trials": 15,
+  "n_segments": 3,
+  "n_neighbors": 5,
+  "n_folds": 10,
+  "n_mc": 10,
+  "n_combinations": 10,
+  "binary_labels": [9, 17],
+  "pause_seconds": 0.05,
+  "batch_pause_seconds": 1.0
+}

@@ -1,0 +1,10 @@
+# Tested on macOS ARM64 with Python 3.9.6; use Python 3.9--3.12 for these pins.
+numpy==2.0.2
+pandas==2.3.3
+scipy==1.13.1
+scikit-learn==1.6.1
+matplotlib==3.9.4
+threadpoolctl==3.7.0
+# PDF inspection/verification only (not needed for numerical experiments).
+pypdf==6.21.4
+PyMuPDF==1.26.5

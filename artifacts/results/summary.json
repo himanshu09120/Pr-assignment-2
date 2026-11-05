@@ -1,0 +1,94 @@
+{
+  "config": {
+    "seed": 2026,
+    "n_trials": 15,
+    "n_segments": 3,
+    "n_neighbors": 5,
+    "n_folds": 10,
+    "n_mc": 10,
+    "n_combinations": 10,
+    "binary_labels": [
+      9,
+      17
+    ],
+    "pause_seconds": 0.05,
+    "batch_pause_seconds": 1.0
+  },
+  "shape": [
+    1200,
+    48
+  ],
+  "unique_files": 80,
+  "min_length": 9205,
+  "max_length": 15106,
+  "total_time_samples": 797426,
+  "binary_mean": 0.9308333333333334,
+  "binary_sd": 0.017145888180012184,
+  "binary_macro_f1": 0.930797944371438,
+  "binary_scores": [
+    0.9416666666666667,
+    0.9416666666666667,
+    0.925,
+    0.925,
+    0.9166666666666666,
+    0.9083333333333333,
+    0.9166666666666666,
+    0.9666666666666667,
+    0.925,
+    0.9416666666666667
+  ],
+  "full_mean": 0.39858333333333335,
+  "full_sd": 0.005880103509628941,
+  "full_macro_f1": 0.3846522329818411,
+  "full_scores": [
+    0.40166666666666667,
+    0.3958333333333333,
+    0.4008333333333333,
+    0.3983333333333333,
+    0.3925,
+    0.3933333333333333,
+    0.3975,
+    0.4,
+    0.3933333333333333,
+    0.4125
+  ],
+  "loso_scores": [
+    0.24333333333333335,
+    0.12333333333333334,
+    0.31,
+    0.21666666666666667
+  ],
+  "loso_mean": 0.22333333333333336,
+  "largest_drop_from_M": 2,
+  "largest_drop_to_M": 3,
+  "largest_drop_percentage_points": 14.149999999999995,
+  "rapid_drop_threshold_pp": 5,
+  "first_rapid_drop_to_M": 3,
+  "input_fingerprint": "f98fd9d1481aa997af3ba25739bb41cadc30ccc71ec910de8bb4c0bbc5695ccb",
+  "python": "3.9.6",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "sklearn": "1.6.1",
+  "threadpools": [
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libopenblas",
+      "filepath": "/Users/himanshu/Desktop/Pr-assignment-2/.venv/lib/python3.9/site-packages/scipy/.dylibs/libopenblas.0.dylib",
+      "version": "0.3.27",
+      "threading_layer": "pthreads",
+      "architecture": "neoversen1"
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libomp",
+      "filepath": "/Users/himanshu/Desktop/Pr-assignment-2/.venv/lib/python3.9/site-packages/sklearn/.dylibs/libomp.dylib",
+      "version": null
+    }
+  ],
+  "elapsed_seconds": 323.37988500000006
+}

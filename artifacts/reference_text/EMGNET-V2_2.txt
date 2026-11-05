@@ -1,0 +1,929 @@
+--- PAGE 1 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Workshop on advances in deep learning and applications. 
+WADLA 2021, IIIT sri city, Chittoor, AP
+
+--- PAGE 2 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Dr. Anish Chand Turlapaty 
+• Signal Processing and Pattern Recognition
+• Dr. Shiv Ram Dubey (Collaborator)
+• Deep learning 
+• Dr. Balakrishna Gokaraju (Collaborator)
+• Visualizations and Computing Advanced Research Center (ViCAR) &  
+Computational Science and Engineering (CSE), NCAT State University, 
+Greensboro, North Carolina, USA.
+• Machine Learning & Robotics
+• PhD Student: Mr. Naveen Kumar
+• SERB – CORE RESEARCH GRANT - CRG/2019/003801 
+• Feb 2020 – Feb 2022
+
+--- PAGE 3 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• MOTIVATION 
+• ANATOMY AND PHYSIOLOGY 
+• FUNDAMENTALS OF SURFACE EMG 
+SIGNALS
+• DATASETS
+• CLASSIFICATION
+• CLASSICAL APPROACH 
+• DEEP LEARNING APPROACH 
+• DEMONSTRATION 
+
+--- PAGE 4 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 5 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Leading Cause: Stroke to important regions 
+in the Brain 
+• Disabilities:  Motor impairments for moving 
+the limb
+• Recovery: Rehabilitation can help in 
+functional recovery 
+• Challenge: Rehabilitation is both physically 
+and mentally intensive
+• Variations in the extent of disability
+• Main Goal: To provide limb mobility 
+assistance to a patient to enable faster 
+recovery
+• Impact: Enables the patient to carryout the 
+therapeutic movement patterns for an 
+extended duration 
+• Care Provider: Can spend more time on 
+design and adaptation of the therapy 
+• Challenge: To improve the exoskeleton 
+system design to mimic the skills of a 
+human care provider 
+These Photos by Unknown Authors are licensed under CC BY
+
+
+--- PAGE 6 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Armeo power
+ • Fourier m1
+6
+Company: Hocoma, 
+a German MNC working on 
+human movement therapy
+Application:  Used in a rehab 
+center to help 
+injured/disabled people 
+DoF: 7
+Inventor: Fourier Intelligence, 
+a Chinese company working on 
+limb rehab therapy
+Application:  Used in a rehab 
+center to help injured/disabled 
+people 
+Principle: The Brunnstrom 
+approach
+Inventors: Tsukuba 
+University and 
+Cyberdyne. 
+Application: HAL 3 is full 
+body exoskeleton 
+Tech: Based on 
+Myoelectric signals
+m-power Arm Brace
+Inventors: myomo, my own 
+motion, grown at MIT, 
+Oxford, MA
+Application: Function 
+restoration of upper limbs 
+for people with Brachial 
+plexus injury 
+Tech: Myoelectric signal 
+based 
+Hybrid Assistive Limb (HAL)
+
+--- PAGE 7 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Complete wearability
+Adaptability
+Portability
+Energy Smart
+Reliability of the device
+User's safety
+
+--- PAGE 8 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• To implement degrees of freedom 
+that mimic the natural human 
+movements
+• Learn and adapt to human 
+kinematics
+• Proprioception:  
+accelerometers, encoders, and 
+tachometers 
+• Exteroception: Force sensors 
+and machine vision 
+• A symbiotic relation 
+• Close interaction between the 
+human and robot 
+• Compact, durable and lightweight 
+power source to actuate the whole 
+exoskeleton 
+• Still a major challenge for 
+autonomous robotics
+• Complex system design and control
+• Varies with application 
+• Active Control
+• The key requirement is the ability to 
+adapt to uncertainties
+• In contrast to traditional pure servo 
+type pre-programmed control 
+mechanisms
+
+--- PAGE 9 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Improved design of a human-robot interface
+• Sense the bio-signal from human skin surface e.g. EMG 
+• Apply signal processing algorithms  
+• Pattern Recognition 
+• Estimation 
+• Enable the controller to initiate the appropriate 
+movement 
+• To provide mechanical assistance to human body 
+
+--- PAGE 10 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Bio-signal processing for enhancing the functionality of the exo-skeleton 
+Kinematic Models
+Portable CPU + GPU
+DL , SSP &
+Control Algorithms
+Skin Surface
+sEMG sensors
+Actuator
+Exo Arm
+
+
+--- PAGE 11 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 12 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Muscular 
+System
+Connective 
+Tissue
+Skeletal 
+system
+Digestive 
+System
+Respiratory 
+system
+Circulatory 
+system
+Nervous 
+system
+
+--- PAGE 13 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Normally, Skeletal 
+Muscles make 40% of 
+body weight 
+• They are the major 
+consumers of energy and 
+metabolism
+• They provide structure, 
+maintain posture, cause 
+movements and express 
+emotions
+Source: Human Anatomy, Kent M. Van De Graaff , 6th Edition, McGraw Hill Pubs, 2002
+
+--- PAGE 14 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Muscle cells are known as myofibrils 
+• They provide actuation by shortening their resting length (contraction)
+• Cause: Ratcheting of myosin fiber against the actin fiber 
+• Adenosine Triphosphate (ATP) is the fuel for the muscle cells
+• Oxygen and Glucose are required to build ATP
+• After contraction lactic acid forms and needs to be removed
+• Muscle fatigue sets in if this process is not efficient 
+MYOFIBRILS
+
+--- PAGE 15 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Source: Netter Anatomy Illustration Collection, © Elsevier, Inc. All Rights Reserved
+
+--- PAGE 16 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Source: Netter Anatomy Illustration Collection, © Elsevier, Inc. 
+All Rights Reserved
+The system of transverse tubules Micro structure of myofibrils
+Source: Adapted from W. Bloom and D.W. Fawcett, A Textbook of 
+Histology, © 1970, Chapman & Hall.
+
+--- PAGE 17 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Source: Netter Anatomy Illustration Collection, © Elsevier, Inc. All Rights Reserved
+
+
+--- PAGE 18 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Motor Cortex: Planning, Initiating and directing 
+voluntary contraction 
+Brain Stem: Basic Movements and Postural Control 
+Higher Motor 
+Neurons
+Basal Ganglia: Gating proper 
+initiation of movement
+Cerebellum: Sensory motor 
+coordination
+Spinal Cord and Brain Stem Circuits
+Lower  Motor 
+Neurons
+Lower Circuit Neurons: Lower motor 
+neuron integration
+Sensory Inputs Skeletal Muscles
+Source: Neuroscience, 3rd edition, editors: Purves et al., 2004, Sinauer Associates Inc. 
+
+--- PAGE 19 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Motor Pathways
+1. Direct path from 
+motor cortex, 
+ventral lateral 
+spinal cord: To 
+control hand 
+movements
+2. Indirect path: 
+motor cortex 
+through reticular 
+formation and 
+finally to medial 
+spinal cord: to 
+control posture 
+Source: Neuroscience, 3rd edition, editors: Purves et al., 2004, Sinauer Associates Inc. 
+
+--- PAGE 20 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Section along the precentral gyrus, illustrating the somatotopic organization of the motor cortex.
+Motor Map:  The PMC 
+has a map of the human 
+body’s musculature 
+Disproportionate 
+representation of muscle 
+groups in PMC
+Source: Neuroscience, 3rd edition, editors: Purves et al., 2004, Sinauer Associates Inc. 
+
+--- PAGE 21 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Structural Information 
+• A motor neuron (α
+neuron) innervates fibers 
+in a single muscle 
+• Several neurons 
+innervating a muscle form 
+a motor neuron pool 
+• These pools are grouped 
+into rod shaped clusters 
+running parallel to the 
+spinal cord 
+ventral horn of the spinal cord the dorsal view of the reconstructed cord
+Source: Neuroscience, 3rd edition, editors: Purves et al., 2004, Sinauer Associates Inc. 
+
+--- PAGE 22 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Motor 
+neurons in 
+Medial 
+Location 
+Motor 
+neurons in 
+Lateral 
+Location 
+Cross section of the ventral horn at the cervical level of the spinal cord
+Source: Neuroscience, 3rd edition, editors: Purves et al., 2004, Sinauer Associates Inc. 
+
+--- PAGE 23 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 24 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Source: Cram’s Introduction to surface Electromyography. 2nd Ed.,  E. Criswell, Jones and Bartlett Publishers
+
+--- PAGE 25 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Forearm Extensor Site
+ Forearm Flexor Site
+Source: Copyright © Clinical Resources Inc. 
+Ref: Cram’s Introduction to surface 
+Electromyography. 2nd Ed.,  E. Criswell, Jones and 
+Bartlett Publishers
+Chapter 17:  Electrode Placements 
+
+--- PAGE 26 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+
+--- PAGE 27 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Wrist Extension Grasping
+Index Flexion
+
+
+--- PAGE 28 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Time series plots of EMG signal
+ Histograms of EMG signals 
+Activity: Bowling. Source: Physical Actions Dataset
+
+--- PAGE 29 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 30 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• The ninapro dataset consists of 52 classes
+of hand gestures [10, 15].
+• The dataset is collected from 27 and 10
+subjects for DB1 and DB4 respectively.
+• The data is collected from 10 Otto bock
+sEMG sensors placed on hand for DB1 and
+12 Cometa miniwave sEMG sensors for
+DB4.
+• The data is sampled at 100Hz and 2 KHz
+frequency for DB1 and DB4 respectively.
+• Each activity is done for 5s of duration with
+3s of rest and repeated for 10 times and 6
+times for DB1 and DB4 respectively.
+Label Gesture
+0 Rest
+1-12 Individual finger extension or 
+flexion
+13-20 Isometric and isotonic 
+configurations
+20-29 Wrist movements
+30-52 Grasps and functional 
+movements
+
+--- PAGE 31 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Exercise A:- 12 classes of single finger extension and flexion movements [10].
+
+--- PAGE 32 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Exercise B:- 8 classes of isometric and isotonic finger movements [10].
+1)Thumb up                   2) Three finger extension  3) Pointing 
+Index finger
+
+--- PAGE 33 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Exercise B:- 9 classes of wrist movements [17].
+
+
+--- PAGE 34 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Exercise C:- 23 classes of hand grasp functions [10].
+
+
+--- PAGE 35 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Dataset
+No. of 
+classes
+No. of 
+subjects
+No.of Trials  
+per class
+Total no. 
+of 
+samples
+Sampling 
+Frequency
+Sensor 
+name
+No. of 
+electrodes/ 
+channels
+DB1 52 27 10 14,040 100 Hz Ottobock 10
+DB2 49 40 6 11,760 2 kHz
+Delsys
+Trigno
+Wireless 12
+DB4 52 10 6 3120 2 kHz
+Cometa
+Miniwav
+e sensors 12
+
+--- PAGE 36 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Dataset
+No. of 
+classes
+No. of 
+subjects
+No.of Trials  
+per class
+Total no. 
+of 
+samples
+Sampling 
+Frequency
+Sensor 
+name
+No. of 
+electrodes/ 
+channels
+DB 5 52 10 6 3120 2 KHz
+Cometa
+Miniwave
+sensors 12
+CapgMyo 
+DBa 8 18 180 1440 1 KHz
+silver wet 
+electrodes 8 X 16
+CSL-
+HDEMG 27 5 10 1350 2048 Hz
+OTTO 
+Bioelectro
+nica 7 X 24
+
+--- PAGE 37 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Dataset
+No. of 
+classes
+No. of 
+subjects
+No.of Trials  
+per class
+Total no. 
+of 
+samples
+Sampling 
+Frequency
+Sensor 
+name
+No. of 
+electrodes/ 
+channels
+BioPatRec 26 17 10 4420 2 KHz
+Thalmic 
+Myo 
+Armband 4
+Myo 
+Dataset 7 19 4 532 200 Hz
+Myo 
+Armband 8
+
+--- PAGE 38 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 39 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Goal is to learn the intention of the user
+• Provides an intuitive/natural control of the robot 
+• Learning based controllers are available in the market
+• Only 10% of US amputees have access 
+controllerEMG Signal Movement
+EMG Signal controllerLearning Movement withbetter DoF
+
+--- PAGE 40 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Challenges 
+• Work in real time control 
+applications 
+• Provide maximum degrees of 
+freedom in movement 
+• Lack of physiologically causal 
+musculature
+• EMG Crosstalk 
+• sEMG may not be sufficiently 
+informative 
+• How much classification accuracy 
+is enough 
+Solutions
+• Multi-channel EMG 
+• Surgery to provide access to 
+neural pathways 
+• Test and improve in virtual 
+environment 
+• Accuracy vs. usability may 
+have a trade-off 
+
+--- PAGE 41 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+SEGMENTATION & 
+PREPROCESSING
+FEATURE 
+EXTRACTION
+CLASSIFIER
+Left  vs. Right
+Up vs. Down
+LIMB 
+MOVEMENT 
+DIRECTION
+EMG Sequence
+EMG 
+Segments
+Frequency Domain features 
+
+--- PAGE 42 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Relevant Features 
+• Provide unique information for particular classification application 
+• A robust feature set that provides maximum efficiency 
+Robustness against 
+• Electrode shift
+• Muscle fatigue
+• Muscle contraction effort
+• Force variation 
+• Limb position 
+
+--- PAGE 43 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 44 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Mean absolute Value (MAV)
+• Zero crossings
+• Slope sign changes
+• Waveform length
+• Willison amplitude
+• Root mean square
+• Variance
+• Log-detector
+• AR Coefficients
+• Mean Frequency 
+• Median Frequency 
+• Peak Frequency
+• Mean power
+• Wavelet based features 
+• Band powers from PSD
+• Cepstral features 
+• Moments from FFT
+• Ratio of moments 
+
+--- PAGE 45 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Photos by Unknown Author are licensed under CC BY-SA
+
+
+--- PAGE 46 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Turlapaty et al. (2019), [2] extracted various EMG features for movement
+classification.
+
+
+--- PAGE 47 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Accuracy Improvement Channel Relevance
+
+
+--- PAGE 48 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Lack of large scale sEMG dataset.
+No dataset with Indian population.
+Not very much high accuracy achieved.
+No neural network architecture specifically for sEMG signal 
+classification.
+
+--- PAGE 49 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 50 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 51 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Traditional features
+• Time domain stats, AR coefficients, spectral band powers and ratios 
+etc.
+Objective: To learn robust features (Automated discovery 
+of important features )
+• Under variations of age, gender, health conditions
+• Electrode shifting, force variations, limb position variations and signal 
+interference
+
+--- PAGE 52 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Training
+• Algorithm: Standard mini-batch stochastic gradient 
+descent
+• Hyperparameter selection through validation 
+performance
+• Activation function selection
+• Step delay learning rate
+• Testing
+• Validation of the model on unseen data
+
+--- PAGE 53 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Role of Muscle Force (% MVC)
+• Case 1: The subjects perform the N categories of hand 
+movements
+• Case 2: The subjects repeat the above movements while holding a 
+weight such as a dumb-bell
+• Case 3: The subjects repeat the movements in (1) while carrying a 
+common household object
+• Role of subjects
+• Need of training on data from new subjects 
+• Temporal variations 
+• On daily and longer scales
+
+--- PAGE 54 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Geographic location
+• Age group
+• Occupation
+Applicability of the 
+trained model under 
+different conditions 
+as follows
+• Sample size of new examples
+• Similarity of new data with the old 
+data used in training
+Amount and extent 
+of re-training 
+depends on
+
+--- PAGE 55 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Reject only outliers Raw EMG signals 
+• Window length vs. SNR Integrated signals 
+• Rectification, weighted averaging etcIntegrated absolute values 
+• Selection of mother wavelet function and levels of 
+decomposition 
+Wavelet coefficients of the 
+EMG signals 
+• Window length for application of STFTShort-time Fourier transform of the EMG signals
+
+--- PAGE 56 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 57 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Geng et al. (2016), [12] has worked on the following datasets
+➔ NinaPro DB1
+➔ CSL-HDEMG
+➔ CapgMyo DB-a
+➔ Considered each sample point as image and performed classification
+➔ NinapPro DB1 i/p shape is 1 X 10
+➔ CSL-HDEMG i/p shape is 7 X 24
+➔ CapgMyo DBa i/p shape is 8 X 16
+
+--- PAGE 58 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+• Geng et al. (2016), [12] has analysed performance of sEMG datasets classification
+by using instantaneous sEMG images.
+
+
+--- PAGE 59 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ 8 hand gestures recognition accuracy.
+
+--- PAGE 60 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Wei et al. (2019), [13] has split each sEMG image into patches for providing to
+the CNN for further classification.
+NinaPro DB1 No. of Streams CSL-HDEMG No. of 
+Streams
+CapgMyo DB-a No. of 
+Streams
+Channel-wise Ms 10 7 X 24-SS 1 8 X 16-SS 1
+hybrid-Ms 3 7 X 1-patch wise MS 24 8 X 2 array wise Ms 8
+20X10-SS 1 7 X 2-patch wise MS 12 8 X 4 array wise Ms 4
+20X10X1-SS 1 7 X 4-patch wise MS 6 8 X 8 array wise Ms 2
+frame-wise-MS 20 7 X 8-patch wise MS 3 1 X 16 patch wise Ms 8
+adjacent-frame-MS 19 1 X 24-patch wise MS 7 2 X 16 patch wise Ms 7
+2 X 24-patch wise MS 6
+
+--- PAGE 61 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Wei et al. (2019), [13] has split each sEMG image into patches for providing to
+the CNN for further classification.
+
+
+--- PAGE 62 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Wei et al. (2019), [13] Results
+NinaPro DB1 Classification 
+Accuracy (%)
+CSL-HDEMG Classification 
+Accuracy (%)
+CapgMyo DB-a Classification 
+Accuracy (%)
+Channel-wise Ms 85 7 X 24-SS 89.5 8 X 16-SS 89.2
+hybrid-Ms 81.6 7 X 1-patch wise MS 89.5 8 X 2 array wise Ms 89.5
+20X10-SS 82.9 7 X 2-patch wise MS 89.6 8 X 4 array wise Ms 89.4
+20X10X1-SS 83.3 7 X 4-patch wise MS 89.8 8 X 8 array wise Ms 89.4
+frame-wise-MS 79.4 7 X 8-patch wise MS 90.3 1 X 16 patch wise Ms 84.2
+adjacent-frame-MS 79.2 1 X 24-patch wise MS 90 2 X 16 patch wise Ms 87.9
+2 X 24-patch wise MS 90.2
+
+--- PAGE 63 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Olsson et al. (2020), [8] has worked on the following datasets
+➔ NinaPro DB1 and DB2
+➔ BioPatRec
+➔ CapgMyo DB-a
+➔ Considered each sample point as image and performed classification
+➔ NinapPro DB1 and DB2 i/p shape is 100 X 12 X 1
+➔ BioPatRec i/p shape is 7 X 24
+➔ CapgMyo DB-a i/p shape is 100 X 8 X 16
+
+--- PAGE 64 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Olsson et al. (2020), [8] has proposed an algorithm for identifying the network 
+topology for sEMG classification.
+
+
+--- PAGE 65 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Olsson et al. (2020), [8] CNN architecture
+gesture 1
+CNN Layer, 64 
+filters 9X1 with 
+stride 3X1
+CNN Layer, 64 
+filters 5X1 with 
+stride 2X1
+one FC Layer -512
+FC Layer 
+with output 
+gestures, 
+SoftMax
+gesture 2
+gesture Ng
+
+--- PAGE 66 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Olsson et al. (2020), [8] has compared results with 4 datasets
+NinaPro DB-1 
+(200 ms) Test 
+accuracy (%)
+NinaPro DB-2 
+(200 ms) Test 
+accuracy (%)
+BioPatRec
+(150 ms) Test 
+accuracy (%)
+CapgMyo - DBa 
+(150 ms) Test 
+accuracy (%)
+Benchmark classifier with handcrafted 
+feature set
+75.3 75.3 92.9 -
+CNN by Atzori et al. [11] 66.6 60.3 - -
+CNN by Geng et al. [12] 77.8 - - 99.5
+Multistream-CNN by Wei et al.[13] 84 - - 99.7
+CNN with PCA by Zhai et al. [20] - 78.7 - -
+CNN-RNN by Hu et al. [14] 87 82.2 94.1 99.7
+Evolved CNN [8] 81 71.6 91.4 98
+
+--- PAGE 67 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Cote-Allard et al. (2020), [9] has worked on the following datasets
+➔ NinaPro DB5
+➔ Myo Dataset
+➔ Considered three different modalities of input for CNN
+➔ raw sEMG image
+➔ Spectrograms
+➔ Continuous Wavelet Transform (CWT)
+➔ Implemented Transfer Learning (TL) technique
+
+--- PAGE 68 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Cote-Allard et al. (2020), [9] has provided the following dataset
+➔ Myo Dataset -7 wrist movements
+
+
+--- PAGE 69 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+
+--- PAGE 70 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+➔ Cote-Allard et al. (2020), [9] results for NinaPro DB5
+
+
+--- PAGE 71 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+
+--- PAGE 72 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+1. Ertuğrul, Ömer Faruk, Yılmaz Kaya, and Ramazan Tekin. "A novel approach for SEMG signal classification with adaptive local 
+binary patterns." Medical & biological engineering & computing 54.7 (2016): 1137- 1146.
+2. Turlapaty, Anish C., and Balakrishna Gokaraju. "Feature analysis for classification of physical actions using surface EMG data."
+IEEE Sensors Journal 19.24 (2019): 12196-12204.
+3. Bell, C. J., Shenoy, P ., Chalodhorn, R., & Rao, R. P . (2008). Control of a humanoid robot by a noninvasive brain–computer 
+interface in humans. Journal of neural engineering, 5(2), 214.
+4. Khokar, Karan, et al. "Laser-assisted telerobotic control for enhancing manipulation capabilities of persons with disabilities." 
+2010 IEEE/RSJ International Conference on Intelligent Robots and Systems. IEEE, 2010.
+5. Al-Timemy, Ali H., Rami N. Khushaba, and Javier Escudero. "Selecting the optimal movement subset with different pattern 
+recognition based EMG control algorithms." 2016 38th Annual International Conference of the IEEE Engineering in Medicine 
+and Biology Society (EMBC). IEEE, 2016.
+6. Shen, Shu, et al. "Movements classification of multi-channel sEMG based on CNN and stacking ensemble learning." IEEE 
+Access 7 (2019): 137489-137500.
+7. Tsinganos, Panagiotis, et al. "Improved Gesture Recognition Based on sEMG Signals and TCN." ICASSP 2019-2019 IEEE 
+International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2019.
+8. Olsson, Alexander E., Anders Björkman, and Christian Antfolk. "Automatic discovery of resource-restricted Convolutional 
+Neural Network topologies for myoelectric pattern recognition." Computers in Biology and Medicine 120 (2020): 103723.
+9. Côté-Allard, Ulysse, et al. "Deep learning for electromyographic hand gesture signal classification using transfer learning." IEEE 
+Transactions on Neural Systems and Rehabilitation Engineering 27.4 (2019): 760 - 771.
+10. Atzori, Manfredo, et al. "Electromyography data for non-invasive naturally-controlled robotic hand prostheses." Scientific data 
+1.1 (2014): 1-13.
+
+--- PAGE 73 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+11. Atzori, Manfredo, Matteo Cognolato, and Henning Müller. "Deep learning with convolutional neural networks applied to 
+electromyography data: A resource for the classification of movements for prosthetic hands." Frontiers in neurorobotics 10 
+(2016): 9.
+12. Geng, Weidong, et al. "Gesture recognition by instantaneous surface EMG images." Scientific reports 6.1 (2016): 1-8.
+13. Wei, Wentao, et al. "A multi-stream convolutional neural network for sEMG-based gesture recognition in muscle-computer 
+interface." Pattern Recognition Letters 119 (2019): 131-138.
+14. Hu, Yu, et al. "A novel attention-based hybrid CNN-RNN architecture for sEMG-based gesture recognition." PloS one 13.10 
+(2018): e0206049.
+15. Pizzolato, Stefano, et al. "Comparison of six electromyography acquisition setups on hand movement classification tasks." PloS
+one 12.10 (2017): e0186132.
+16. Bao, Tianzhe, et al. "A CNN-LSTM Hybrid Model for Wrist Kinematics Estimation Using Surface Electromyography." IEEE 
+Transactions on Instrumentation and Measurement 70 (2020): 1-9.
+17. Huang, Bo, et al. "Wearable stretch sensors for motion measurement of the wrist joint based on dielectric elastomers." 
+Sensors 17.12 (2017): 2708.
+18. Wei, Wentao, et al. "A multi-stream convolutional neural network for sEMG-based gesture recognition in muscle-computer 
+interface." Pattern Recognition Letters 119 (2019): 131-138.
+19. Hu, Yu, et al. "A novel attention-based hybrid CNN-RNN architecture for sEMG-based gesture recognition." PloS one 13.10 
+(2018): e0206049.
+20. Pizzolato, Stefano, et al. "Comparison of six electromyography acquisition setups on hand movement classification tasks." PloS
+one 12.10 (2017): e0186132.
+
+--- PAGE 74 ---
+North Carolina A&T State UniversityEMGNET
+Indian Institute of Information Technology Sri CityTurlapaty et al
+Contact Information: anish.turlapaty@iiits.in
